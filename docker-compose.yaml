@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  yolo-api:
+    build: .
+    image: ml-api
+    container_name: ml_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./static/results:/app/static/results
+    restart: unless-stopped
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+
+
+volumes:
+  results:
